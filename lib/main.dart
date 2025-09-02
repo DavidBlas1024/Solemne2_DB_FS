@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:solemne_2_dw/routes/app_routes.dart';
 import 'package:solemne_2_dw/themes/my_theme.dart';
+import 'package:solemne_2_dw/service/services.dart';
+import 'package:solemne_2_dw/service/product_service.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const AppState());
+}
+
+class AppState extends StatelessWidget {
+  const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => ProductService())],
+      child: const MainApp(),
+    );
+  }
 }
 
 class MainApp extends StatelessWidget {
