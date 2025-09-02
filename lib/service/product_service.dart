@@ -23,7 +23,6 @@ class ProductService extends ChangeNotifier {
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.get(url, headers: {'authorization': basicAuth});
     final productMap = Product.fromJson(response.body);
-    print(response.body);
     products = productMap.listado;
     isLoading = false;
     notifyListeners();

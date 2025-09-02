@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:solemne_2_dw/routes/app_routes.dart';
 import 'package:solemne_2_dw/themes/my_theme.dart';
 import 'package:solemne_2_dw/service/services.dart';
-import 'package:solemne_2_dw/service/product_service.dart';
 
 void main() {
   runApp(const AppState());
