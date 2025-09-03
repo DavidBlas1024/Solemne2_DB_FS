@@ -1,5 +1,6 @@
 export 'package:solemne_2_dw/screens/error_screen.dart';
 export 'package:solemne_2_dw/screens/home_screen.dart';
+export 'package:solemne_2_dw/screens/loading_screen.dart';
 
 //LOGIN Y REGISTER
 export 'package:solemne_2_dw/screens/login_screen.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/productos.dart';
+import 'package:solemne_2_dw/models/productos.dart';
 
 class ProductService extends ChangeNotifier {
   final String _baseUrl = '143.198.118.203:8100';
