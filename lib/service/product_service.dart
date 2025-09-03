@@ -13,6 +13,7 @@ class ProductService extends ChangeNotifier {
   bool isLoading = true;
 
   ProductService() {
+    print('ProductService inicializado');
     loadProducts();
   }
 
@@ -20,9 +21,10 @@ class ProductService extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final url = Uri.http(_baseUrl, 'ejemplos/product_list_rest/');
-    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    String basicAuth = 'Basic ${base64Encode(utf8.encode('$_user:$_pass'))}';
     final response = await http.get(url, headers: {'authorization': basicAuth});
     final productMap = Product.fromJson(response.body);
+    print(response.body);
     products = productMap.listado;
     isLoading = false;
     notifyListeners();

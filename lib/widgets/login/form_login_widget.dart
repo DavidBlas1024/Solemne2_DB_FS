@@ -45,6 +45,8 @@ class FormLoginWidget extends StatelessWidget {
             ),
             disabledColor: const Color.fromARGB(255, 40, 125, 167),
             color: const Color.fromARGB(255, 49, 69, 137),
+            elevation: 0,
+            onPressed: () => Navigator.pushNamed(context, pathButton),
             child: Container(
               padding: EdgeInsetsDirectional.symmetric(
                 horizontal: 80,
@@ -52,8 +54,6 @@ class FormLoginWidget extends StatelessWidget {
               ),
               child: Text(textButton, style: TextStyle(color: Colors.white)),
             ),
-            elevation: 0,
-            onPressed: () => Navigator.pushNamed(context, pathButton),
           ),
         ],
       ),

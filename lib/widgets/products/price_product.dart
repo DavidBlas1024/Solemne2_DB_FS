@@ -16,7 +16,7 @@ class PriceProduct extends StatelessWidget {
         child: Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
           child: Text(
-            '\$' + priceProduct,
+            '\$$priceProduct',
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,

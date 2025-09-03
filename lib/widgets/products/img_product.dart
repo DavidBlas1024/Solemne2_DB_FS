@@ -8,7 +8,7 @@ class ImgProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: 400,
         child: url == null
