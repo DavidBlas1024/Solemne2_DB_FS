@@ -1,4 +1,6 @@
 export 'package:solemne_2_dw/widgets/card_menu_widget.dart';
+export 'package:solemne_2_dw/widgets/app_bar_widget.dart';
+export 'package:solemne_2_dw/widgets/log_out_widget.dart';
 
 //LOGIN
 export 'package:solemne_2_dw/widgets/login/form_login_widget.dart';
@@ -6,8 +8,6 @@ export 'package:solemne_2_dw/widgets/login/login_form_widget.dart';
 export 'package:solemne_2_dw/widgets/login/login_card_widget.dart';
 export 'package:solemne_2_dw/widgets/login/login_two_widget.dart';
 export 'package:solemne_2_dw/widgets/login/login_one_widget.dart';
-export 'package:solemne_2_dw/widgets/login/app_bar_widget.dart';
-export 'package:solemne_2_dw/widgets/log_out_widget.dart';
 
 //PRODUCTOS
 export 'package:solemne_2_dw/widgets/products/card_product_widget.dart';

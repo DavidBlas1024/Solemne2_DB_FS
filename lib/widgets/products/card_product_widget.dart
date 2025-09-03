@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
+import 'package:solemne_2_dw/models/productos.dart';
 
 class CardProductWidget extends StatelessWidget {
-  final String nameProduct;
-  const CardProductWidget({super.key, required this.nameProduct});
+  final Listado product;
+  const CardProductWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
       child: Container(
-        margin: EdgeInsets.only(top: 30, bottom: 10),
+        margin: EdgeInsets.only(bottom: 40, top: 25),
         width: double.infinity,
         decoration: _cardDecorations(),
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            ImgProduct(),
-            DetailProduct(nameProduct: nameProduct),
+            ImgProduct(url: product.productImage),
+            DetailProduct(nameProduct: product.productName),
             Positioned(
               top: 0,
               right: 0,
-              child: PriceProduct(priceProduct: '100'),
+              child: PriceProduct(
+                priceProduct: product.productPrice.toString(),
+              ),
             ),
           ],
         ),

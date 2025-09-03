@@ -52,4 +52,12 @@ class Listado {
     "product_image": productImage,
     "product_state": productState,
   };
+
+  Listado copy() => Listado(
+    productId: productId,
+    productName: productName,
+    productPrice: productPrice,
+    productImage: productImage,
+    productState: productState,
+  );
 }
