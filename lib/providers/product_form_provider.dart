@@ -9,4 +9,6 @@ class ProductFormProvider extends ChangeNotifier {
   bool isValidForm() {
     return formkey.currentState?.validate() ?? false;
   }
+
+  bool get isNew => product.productId == 0;
 }

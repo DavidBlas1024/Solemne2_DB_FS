@@ -18,6 +18,8 @@ class ViewProductsScreen extends StatelessWidget {
         itemCount: productService.products.length,
         itemBuilder: (BuildContext context, index) => GestureDetector(
           onTap: () {
+            productService.selectProduct = productService.products[index]
+                .copy();
             Navigator.pushNamed(context, 'edit_products');
           },
           child: CardProductWidget(product: productService.products[index]),
@@ -36,7 +38,7 @@ class ViewProductsScreen extends StatelessWidget {
 
             productState: '',
           );
-          Navigator.pushNamed(context, 'edit_products');
+          Navigator.pushNamed(context, 'create_products');
         },
       ),
     );

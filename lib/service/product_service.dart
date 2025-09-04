@@ -54,10 +54,9 @@ class ProductService extends ChangeNotifier {
     );
     final decodeResp = response.body;
     print(decodeResp);
-
     //Actulizar Listado
     final index = products.indexWhere(
-      (element) => element.productId == product,
+      (element) => element.productId == product.productId,
     );
     products[index] = product;
     return '';
@@ -76,7 +75,6 @@ class ProductService extends ChangeNotifier {
     );
     final decodeResp = response.body;
     print(decodeResp);
-
     //agregar producto
     this.products.add(product);
     return '';

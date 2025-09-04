@@ -13,43 +13,9 @@ class EditProductsScreen extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) => ProductFormProvider(productService.selectProduct!),
-      child: _ProductScreenBody(productService: productService),
-    );
-  }
-}
-
-class _ProductScreenBody extends StatelessWidget {
-  final ProductService productService;
-  const _ProductScreenBody({super.key, required this.productService});
-  @override
-  Widget build(BuildContext context) {
-    final productForm = Provider.of<ProductFormProvider>(context);
-    return Scaffold(
-      appBar: AppBarWidget(textTitle: 'EDITAR PRODUCTO'),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              ImgProduct(),
-              SizedBox(height: 20),
-              FormProductWidget(),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            child: Icon(Icons.save),
-            onPressed: () async {
-              if (!productForm.isValidForm()) return;
-              await productService.editOrCreateProducts(productForm.product);
-            },
-          ),
-        ],
+      child: ProductScreenBody(
+        title: 'EDITAR PRODUCTO',
+        productService: productService,
       ),
     );
   }

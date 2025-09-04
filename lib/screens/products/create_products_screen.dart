@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:solemne_2_dw/providers/providers.dart';
+import 'package:solemne_2_dw/service/services.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
 
 class CreateProductsScreen extends StatelessWidget {
@@ -6,20 +9,13 @@ class CreateProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(textTitle: 'AGREGAR PRODUCTO'),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              ImgProduct(),
-              SizedBox(height: 20),
-              FormProductWidget(),
-            ],
-          ),
-        ),
+    final productService = Provider.of<ProductService>(context);
+
+    return ChangeNotifierProvider(
+      create: (_) => ProductFormProvider(productService.selectProduct!),
+      child: ProductScreenBody(
+        title: 'CREAR PRODUCTO',
+        productService: productService,
       ),
     );
   }
