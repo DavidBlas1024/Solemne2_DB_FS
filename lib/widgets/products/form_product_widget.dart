@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:solemne_2_dw/providers/providers.dart';
 import 'package:solemne_2_dw/ui/input_decorations.dart';
 
 class FormProductWidget extends StatelessWidget {
@@ -6,6 +8,8 @@ class FormProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productForm = Provider.of<ProductFormProvider>(context);
+    final product = productForm.product;
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
       child: Container(
@@ -13,23 +17,51 @@ class FormProductWidget extends StatelessWidget {
         width: double.infinity,
         decoration: _cardDecorations(),
         child: Form(
+          key: productForm.formkey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               TextFormField(
-                initialValue: 'Nombre del producto',
+                initialValue: product.productName,
+                onChanged: (value) => product.productName = value,
+                validator: (value) {
+                  if (value == null || value.length < 1) {
+                    return 'El nombre es obligatorio';
+                  }
+                },
                 decoration: InputDecorations.authInputDecoration(
                   hinText: 'Nombre del producto',
                   labelText: 'Nombre',
                 ),
               ),
               TextFormField(
-                initialValue: '1000',
+                initialValue: product.productPrice.toString(),
+                onChanged: (value) {
+                  if (int.tryParse(value) == null) {
+                    product.productPrice = 0;
+                  } else {
+                    product.productPrice = int.parse(value);
+                  }
+                },
                 decoration: InputDecorations.authInputDecoration(
                   hinText: 'Precio',
                   labelText: 'Precio',
                 ),
               ),
+              TextFormField(
+                initialValue: product.productImage,
+                onChanged: (value) => product.productImage = value,
+                validator: (value) {
+                  if (value == null || value.length < 1) {
+                    return "La url es obligatoria";
+                  }
+                },
+                decoration: InputDecorations.authInputDecoration(
+                  hinText: 'Agregue una Url',
+                  labelText: 'Url',
+                ),
+              ),
+
               TextFormField(
                 initialValue: '24',
                 decoration: InputDecorations.authInputDecoration(

@@ -9,8 +9,9 @@ class ProductService extends ChangeNotifier {
   final String _pass = 'test2023';
 
   List<Listado> products = [];
-
+  Listado? selectProduct;
   bool isLoading = true;
+  bool isEditCreate = true;
 
   ProductService() {
     loadProducts();
@@ -26,5 +27,58 @@ class ProductService extends ChangeNotifier {
     products = productMap.listado;
     isLoading = false;
     notifyListeners();
+  }
+
+  Future editOrCreateProducts(Listado product) async {
+    isEditCreate = true;
+    notifyListeners();
+    if (product.productId == 0) {
+      await this.createProduct(product);
+    } else {
+      await this.updateProduct(product);
+    }
+    isEditCreate = false;
+    notifyListeners();
+  }
+
+  Future<String> updateProduct(Listado product) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/product_edit_rest/');
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    final response = await http.post(
+      url,
+      body: product.toJson(),
+      headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    final decodeResp = response.body;
+    print(decodeResp);
+
+    //Actulizar Listado
+    final index = products.indexWhere(
+      (element) => element.productId == product,
+    );
+    products[index] = product;
+    return '';
+  }
+
+  Future createProduct(Listado product) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/product_add_rest/');
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    final response = await http.post(
+      url,
+      body: product.toJson(),
+      headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    final decodeResp = response.body;
+    print(decodeResp);
+
+    //agregar producto
+    this.products.add(product);
+    return '';
   }
 }

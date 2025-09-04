@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solemne_2_dw/models/productos.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:solemne_2_dw/service/services.dart';
@@ -26,7 +27,16 @@ class ViewProductsScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.pushNamed(context, 'create_products');
+          productService.selectProduct = Listado(
+            productId: 0,
+            productName: '',
+            productPrice: 0,
+            productImage:
+                'https://r-charts.com/es/miscelanea/procesamiento-imagenes-magick_files/figure-html/importar-imagen-r.png',
+
+            productState: '',
+          );
+          Navigator.pushNamed(context, 'edit_products');
         },
       ),
     );
