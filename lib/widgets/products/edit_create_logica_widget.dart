@@ -37,13 +37,19 @@ class ProductScreenBody extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            child: Icon(Icons.delete_forever),
-            onPressed: () async {
-              if (!productForm.isValidForm()) return;
-              await productService.deleteProduct(productForm.product, context);
-            },
-          ),
+          if (productForm.product.productId != 0) // 👈 condicional
+            FloatingActionButton(
+              heroTag: 'deleteBtn',
+              backgroundColor: Colors.red,
+              child: const Icon(Icons.delete_forever),
+              onPressed: () async {
+                if (!productForm.isValidForm()) return;
+                await productService.deleteProduct(
+                  productForm.product,
+                  context,
+                );
+              },
+            ),
           SizedBox(width: 20),
           FloatingActionButton(
             child: Icon(Icons.save),
