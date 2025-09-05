@@ -33,13 +33,27 @@ class ProductScreenBody extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.save),
-        onPressed: () async {
-          if (!productForm.isValidForm()) return;
-          await productService.editOrCreateProducts(productForm.product);
-          Navigator.pushReplacementNamed(context, 'view_products');
-        },
+
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            child: Icon(Icons.delete_forever),
+            onPressed: () async {
+              if (!productForm.isValidForm()) return;
+              await productService.deleteProduct(productForm.product, context);
+            },
+          ),
+          SizedBox(width: 20),
+          FloatingActionButton(
+            child: Icon(Icons.save),
+            onPressed: () async {
+              if (!productForm.isValidForm()) return;
+              await productService.editOrCreateProducts(productForm.product);
+            },
+            heroTag: null,
+          ),
+        ],
       ),
     );
   }

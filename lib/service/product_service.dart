@@ -77,6 +77,25 @@ class ProductService extends ChangeNotifier {
     print(decodeResp);
     //agregar producto
     this.products.add(product);
+
+    return '';
+  }
+
+  Future deleteProduct(Listado product, BuildContext contex) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/product_del_rest/');
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    final response = await http.post(
+      url,
+      body: product.toJson(),
+      headers: {
+        'authorization': basicAuth,
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    final decodeResp = response.body;
+    this.products.clear();
+    loadProducts();
+    Navigator.of(contex).pushNamed('list_product');
     return '';
   }
 }
