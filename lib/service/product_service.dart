@@ -52,8 +52,6 @@ class ProductService extends ChangeNotifier {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-    final decodeResp = response.body;
-    print(decodeResp);
     //Actulizar Listado
     final index = products.indexWhere(
       (element) => element.productId == product.productId,
@@ -74,8 +72,7 @@ class ProductService extends ChangeNotifier {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-    final decodeResp = response.body;
-    print(decodeResp);
+
     //agregar producto
     this.products.add(product);
     loadProducts();
@@ -94,7 +91,6 @@ class ProductService extends ChangeNotifier {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-    final decodeResp = response.body;
     this.products.clear();
     loadProducts();
     Navigator.of(contex).pushNamed('view_products');

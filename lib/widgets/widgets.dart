@@ -15,7 +15,7 @@ export 'package:solemne_2_dw/widgets/products/detail_product_widget.dart';
 export 'package:solemne_2_dw/widgets/products/img_product.dart';
 export 'package:solemne_2_dw/widgets/products/price_product.dart';
 export 'package:solemne_2_dw/widgets/products/form_product_widget.dart';
-export 'package:solemne_2_dw/widgets/products/edit_create_logica_widget.dart';
+export 'package:solemne_2_dw/widgets/products/edit_create_logic_widget.dart';
 
 //CATEGORIAS
 export 'package:solemne_2_dw/widgets/categories/card_categ_widget.dart';
