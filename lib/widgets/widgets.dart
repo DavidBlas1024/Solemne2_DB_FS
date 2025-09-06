@@ -25,5 +25,5 @@ export 'package:solemne_2_dw/widgets/categories/edit_create_categ_widget.dart';
 
 //PROVEEDORES
 export 'package:solemne_2_dw/widgets/suppliers/categ_expandible_widget.dart';
-export 'package:solemne_2_dw/widgets/suppliers/form_suppliers_widget.dart';
 export 'package:solemne_2_dw/widgets/suppliers/info_suppliers_widget.dart';
+export 'package:solemne_2_dw/widgets/suppliers/form_suppliers_widget.dart';

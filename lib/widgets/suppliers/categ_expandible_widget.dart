@@ -6,7 +6,6 @@ class CategExpandibleWidget extends StatefulWidget {
   final String rutSuppliers;
   final String phoneSuppliers;
   final String emailSuppliers;
-  final String addressSuppliers;
 
   const CategExpandibleWidget({
     super.key,
@@ -14,7 +13,6 @@ class CategExpandibleWidget extends StatefulWidget {
     required this.rutSuppliers,
     required this.phoneSuppliers,
     required this.emailSuppliers,
-    required this.addressSuppliers,
   });
 
   @override
@@ -80,7 +78,6 @@ class _CategExpandibleWidgetState extends State<CategExpandibleWidget> {
                           rutSuppliers: widget.rutSuppliers,
                           phoneSuppliers: widget.phoneSuppliers,
                           emailSuppliers: widget.emailSuppliers,
-                          addressSuppliers: widget.addressSuppliers,
                         ),
                       ),
 

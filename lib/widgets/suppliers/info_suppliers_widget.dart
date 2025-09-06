@@ -4,7 +4,6 @@ class InfoSuppliersWidget extends StatelessWidget {
   final String rutSuppliers;
   final String phoneSuppliers;
   final String emailSuppliers;
-  final String addressSuppliers;
 
   const InfoSuppliersWidget({
     super.key,
@@ -12,7 +11,6 @@ class InfoSuppliersWidget extends StatelessWidget {
     required this.rutSuppliers,
     required this.phoneSuppliers,
     required this.emailSuppliers,
-    required this.addressSuppliers,
   });
 
   @override
@@ -60,17 +58,6 @@ class InfoSuppliersWidget extends StatelessWidget {
               decoration: _cardDecorations(),
               child: Text(
                 emailSuppliers,
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(top: 19),
-              child: Text(
-                addressSuppliers,
                 style: const TextStyle(
                   fontSize: 20,
                   color: Colors.black,

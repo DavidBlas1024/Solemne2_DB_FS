@@ -1,72 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:solemne_2_dw/models/categ.dart';
+import 'package:solemne_2_dw/models/supplier.dart';
 
-class CategService extends ChangeNotifier {
+class suppliesrService extends ChangeNotifier {
   final String _baseUrl = '143.198.118.203:8100';
   final String _user = 'test';
   final String _pass = 'test2023';
 
-  List<Listado> category = [];
-  Listado? selectCategory;
+  List<Listado> supplier = [];
+  Listado? selectsupplier;
   bool isLoading = true;
   bool isEditCreate = true;
 
-  CategService() {
-    loadCategory();
+  suppliesrService() {
+    loadsupplier();
   }
 
-  loadCategory() async {
+  loadsupplier() async {
     isLoading = true;
     notifyListeners();
-    final url = Uri.http(_baseUrl, 'ejemplos/category_list_rest/');
+    final url = Uri.http(_baseUrl, 'ejemplos/provider_list_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.get(url, headers: {'Authorization': basicAuth});
-    final categMap = Categ.fromJson(response.body);
-    category = categMap.listado;
+    final suppliergMap = Supplier.fromJson(response.body);
+    supplier = suppliergMap.listado;
     isLoading = false;
     notifyListeners();
   }
 
-  Future editOrCreateCategory(Listado category) async {
+  Future editOrCreateSupplier(Listado supplier) async {
     isEditCreate = true;
     notifyListeners();
-    if (category.categorytId == 0) {
-      await this.createCategory(category);
+    if (supplier.providerId == 0) {
+      await this.createCategory(supplier);
     } else {
-      await this.updateCategory(category);
+      await this.updateSupplier(supplier);
     }
     isEditCreate = false;
     notifyListeners();
   }
 
-  Future<String> updateCategory(Listado categ) async {
-    final url = Uri.http(_baseUrl, 'ejemplos/category_edit_rest/');
+  Future<String> updateSupplier(Listado suppliers) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/provider_edit_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.post(
       url,
-      body: categ.toJson(),
+      body: suppliers.toJson(),
       headers: {
         'Authorization': basicAuth,
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
     //Actulizar Listado
-    final index = category.indexWhere(
-      (element) => element.categorytId == categ.categorytId,
+    final index = supplier.indexWhere(
+      (element) => element.providerId == suppliers.providerId,
     );
-    category[index] = categ;
-    loadCategory();
+    supplier[index] = suppliers;
+    loadsupplier();
     return '';
   }
 
-  Future createCategory(Listado categ) async {
-    final url = Uri.http(_baseUrl, 'ejemplos/category_add_rest/');
+  Future createCategory(Listado suppliers) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/provider_add_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.post(
       url,
-      body: categ.toJson(),
+      body: suppliers.toJson(),
       headers: {
         'Authorization': basicAuth,
         'Content-Type': 'application/json; charset=UTF-8',
@@ -74,25 +74,25 @@ class CategService extends ChangeNotifier {
     );
 
     //agregar producto
-    this.category.add(categ);
-    loadCategory();
+    this.supplier.add(suppliers);
+    loadsupplier();
 
     return '';
   }
 
-  Future deleteCategory(Listado categ, BuildContext contex) async {
-    final url = Uri.http(_baseUrl, 'ejemplos/category_del_rest/');
+  Future deleteCategory(Listado suppliers, BuildContext contex) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/provider_del_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.post(
       url,
-      body: categ.toJson(),
+      body: suppliers.toJson(),
       headers: {
         'authorization': basicAuth,
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-    this.category.clear();
-    loadCategory();
+    this.supplier.clear();
+    loadsupplier();
     return '';
   }
 }

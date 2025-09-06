@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/widgets.dart';
+import 'package:solemne_2_dw/widgets/widgets.dart';
 
 class EditSuppliersScreen extends StatelessWidget {
   const EditSuppliersScreen({super.key});

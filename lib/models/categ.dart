@@ -16,7 +16,7 @@ class Categ {
   );
 
   Map<String, dynamic> toMap() => {
-    "Listado": List<dynamic>.from(listado.map((x) => x.toMap())),
+    "Listado Categorias": List<dynamic>.from(listado.map((x) => x.toMap())),
   };
 }
 

@@ -38,13 +38,6 @@ class FormSuppliersWidget extends StatelessWidget {
               labelText: 'Email',
             ),
           ),
-          TextFormField(
-            initialValue: '',
-            decoration: InputDecorations.authInputDecoration(
-              hinText: 'Dirección comercial',
-              labelText: 'Dirección',
-            ),
-          ),
         ],
       ),
     );
