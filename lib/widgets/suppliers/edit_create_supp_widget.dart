@@ -4,19 +4,19 @@ import 'package:solemne_2_dw/providers/providers.dart';
 import 'package:solemne_2_dw/service/services.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
 
-class EditCreateCategWidget extends StatelessWidget {
+class EditCreateSuppWidget extends StatelessWidget {
   final String title;
-  final CategService categService;
+  final SuppliersService suppliersService;
 
-  const EditCreateCategWidget({
+  const EditCreateSuppWidget({
     super.key,
     required this.title,
-    required this.categService,
+    required this.suppliersService,
   });
 
   @override
   Widget build(BuildContext context) {
-    final categForm = Provider.of<CategFormProvider>(context);
+    final supplierForm = Provider.of<SupplierFormProvider>(context);
 
     return Scaffold(
       appBar: AppBarWidget(textTitle: title),
@@ -24,11 +24,7 @@ class EditCreateCategWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const SizedBox(height: 20),
-              const FormCategWidget(),
-            ],
+            children: [SizedBox(height: 20), FormSuppliersWidget()],
           ),
         ),
       ),
@@ -36,13 +32,16 @@ class EditCreateCategWidget extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          if (categForm.category.categorytId != 0)
+          if (supplierForm.supplier.providerId != 0)
             FloatingActionButton(
               backgroundColor: Colors.red,
               child: const Icon(Icons.delete_forever),
               onPressed: () async {
-                if (!categForm.isValidForm()) return;
-                await categService.deleteCategory(categForm.category, context);
+                if (!supplierForm.isValidForm()) return;
+                await suppliersService.deleteSupplier(
+                  supplierForm.supplier,
+                  context,
+                );
                 Navigator.pop(context);
               },
             ),
@@ -50,8 +49,11 @@ class EditCreateCategWidget extends StatelessWidget {
           FloatingActionButton(
             child: Icon(Icons.save),
             onPressed: () async {
-              if (!categForm.isValidForm()) return;
-              await categService.editOrCreateCategory(categForm.category);
+              print('🟢 Botón presionado');
+              if (!supplierForm.isValidForm()) return;
+              await suppliersService.editOrCreateSupplier(
+                supplierForm.supplier,
+              );
               Navigator.pop(context);
             },
             heroTag: null,

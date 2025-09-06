@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solemne_2_dw/models/supplier.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
 import 'package:solemne_2_dw/service/services.dart';
 import 'package:solemne_2_dw/screens/screens.dart';
@@ -9,7 +10,7 @@ class ViewSuppliersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final suplliersService = Provider.of<suppliesrService>(context);
+    final suplliersService = Provider.of<SuppliersService>(context);
     if (suplliersService.isLoading) return LoadingScreen();
     return Scaffold(
       backgroundColor: Colors.white,
@@ -26,6 +27,13 @@ class ViewSuppliersScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
+          suplliersService.selectsupplier = Listado(
+            providerId: 0,
+            providerName: '',
+            providerLastName: '',
+            providerEmail: '',
+            providerState: '',
+          );
           Navigator.pushNamed(context, 'create_suppliers');
         },
       ),

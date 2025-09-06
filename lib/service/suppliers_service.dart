@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:solemne_2_dw/models/supplier.dart';
 
-class suppliesrService extends ChangeNotifier {
+class SuppliersService extends ChangeNotifier {
   final String _baseUrl = '143.198.118.203:8100';
   final String _user = 'test';
   final String _pass = 'test2023';
@@ -13,7 +13,7 @@ class suppliesrService extends ChangeNotifier {
   bool isLoading = true;
   bool isEditCreate = true;
 
-  suppliesrService() {
+  SuppliersService() {
     loadsupplier();
   }
 
@@ -33,7 +33,7 @@ class suppliesrService extends ChangeNotifier {
     isEditCreate = true;
     notifyListeners();
     if (supplier.providerId == 0) {
-      await this.createCategory(supplier);
+      await this.createSupplier(supplier);
     } else {
       await this.updateSupplier(supplier);
     }
@@ -61,7 +61,7 @@ class suppliesrService extends ChangeNotifier {
     return '';
   }
 
-  Future createCategory(Listado suppliers) async {
+  Future createSupplier(Listado suppliers) async {
     final url = Uri.http(_baseUrl, 'ejemplos/provider_add_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.post(
@@ -80,7 +80,7 @@ class suppliesrService extends ChangeNotifier {
     return '';
   }
 
-  Future deleteCategory(Listado suppliers, BuildContext contex) async {
+  Future deleteSupplier(Listado suppliers, BuildContext contex) async {
     final url = Uri.http(_baseUrl, 'ejemplos/provider_del_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final response = await http.post(
