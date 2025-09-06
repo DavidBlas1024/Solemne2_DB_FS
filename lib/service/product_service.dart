@@ -93,7 +93,6 @@ class ProductService extends ChangeNotifier {
     );
     this.products.clear();
     loadProducts();
-    Navigator.of(contex).pushNamed('view_products');
     return '';
   }
 }

@@ -13,7 +13,7 @@ class CreateProductsScreen extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) => ProductFormProvider(productService.selectProduct!),
-      child: ProductScreenBody(
+      child: EditCreateProductWidget(
         title: 'CREAR PRODUCTO',
         productService: productService,
       ),

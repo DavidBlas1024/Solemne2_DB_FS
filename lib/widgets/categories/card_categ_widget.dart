@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
+import 'package:solemne_2_dw/models/categ.dart';
 
 class CardCategWidget extends StatelessWidget {
-  final String nameCateg;
-  const CardCategWidget({super.key, required this.nameCateg});
+  final Listado category;
+  const CardCategWidget({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,7 @@ class CardCategWidget extends StatelessWidget {
         decoration: _cardDecorations(),
         child: Stack(
           alignment: Alignment.bottomLeft,
-          children: [
-            ImgProduct(),
-            DetailCategWidget(nameCateg: nameCateg),
-          ],
+          children: [DetailCategWidget(nameCateg: category.categorytName)],
         ),
       ),
     );

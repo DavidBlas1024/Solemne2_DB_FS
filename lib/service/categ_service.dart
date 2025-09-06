@@ -40,4 +40,59 @@ class CategService extends ChangeNotifier {
     isEditCreate = false;
     notifyListeners();
   }
+
+  Future<String> updateCategory(Listado product) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/category_edit_rest/');
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    final response = await http.post(
+      url,
+      body: product.toJson(),
+      headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    //Actulizar Listado
+    final index = category.indexWhere(
+      (element) => element.categorytId == product.categorytId,
+    );
+    category[index] = product;
+    loadCategory();
+    return '';
+  }
+
+  Future createCategory(Listado product) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/category_add_rest/');
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    final response = await http.post(
+      url,
+      body: product.toJson(),
+      headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    //agregar producto
+    this.category.add(product);
+    loadCategory();
+
+    return '';
+  }
+
+  Future deleteCategory(Listado product, BuildContext contex) async {
+    final url = Uri.http(_baseUrl, 'ejemplos/category_del_rest/');
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    final response = await http.post(
+      url,
+      body: product.toJson(),
+      headers: {
+        'authorization': basicAuth,
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    this.category.clear();
+    loadCategory();
+    return '';
+  }
 }

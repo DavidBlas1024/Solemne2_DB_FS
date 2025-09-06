@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solemne_2_dw/service/product_service.dart';
+import 'package:solemne_2_dw/providers/categ_form_provider.dart';
+import 'package:solemne_2_dw/service/services.dart';
 import '../../providers/providers.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
 
-class ProductScreenBody extends StatelessWidget {
+class EditCreateCategWidget extends StatelessWidget {
   final String title;
-  final ProductService productService;
+  final CategService categService;
 
-  const ProductScreenBody({
+  const EditCreateCategWidget({
     super.key,
     required this.title,
-    required this.productService,
+    required this.categService,
   });
 
   @override
   Widget build(BuildContext context) {
-    final productForm = Provider.of<ProductFormProvider>(context);
+    final CategForm = Provider.of<CategFormProvider>(context);
 
     return Scaffold(
       appBar: AppBarWidget(textTitle: title),
@@ -26,9 +27,8 @@ class ProductScreenBody extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 20),
-              ImgProduct(url: productForm.product.productImage),
               const SizedBox(height: 20),
-              const FormProductWidget(),
+              const FormCategWidget(),
             ],
           ),
         ),
@@ -37,24 +37,22 @@ class ProductScreenBody extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          if (productForm.product.productId != 0)
+          if (CategForm.category.categorytId != 0)
             FloatingActionButton(
               backgroundColor: Colors.red,
               child: const Icon(Icons.delete_forever),
               onPressed: () async {
-                if (!productForm.isValidForm()) return;
-                await productService.deleteProduct(
-                  productForm.product,
-                  context,
-                );
+                if (!CategForm.isValidForm()) return;
+                await categService.deleteCategory(CategForm.category, context);
+                Navigator.pop(context);
               },
             ),
           SizedBox(width: 20),
           FloatingActionButton(
             child: Icon(Icons.save),
             onPressed: () async {
-              if (!productForm.isValidForm()) return;
-              await productService.editOrCreateProducts(productForm.product);
+              if (!CategForm.isValidForm()) return;
+              await categService.editOrCreateCategory(CategForm.category);
               Navigator.pop(context);
             },
             heroTag: null,

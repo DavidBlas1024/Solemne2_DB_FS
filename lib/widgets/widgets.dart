@@ -15,12 +15,13 @@ export 'package:solemne_2_dw/widgets/products/detail_product_widget.dart';
 export 'package:solemne_2_dw/widgets/products/img_product.dart';
 export 'package:solemne_2_dw/widgets/products/price_product.dart';
 export 'package:solemne_2_dw/widgets/products/form_product_widget.dart';
-export 'package:solemne_2_dw/widgets/products/edit_create_logic_widget.dart';
+export 'package:solemne_2_dw/widgets/products/edit_create_product_widget.dart';
 
 //CATEGORIAS
 export 'package:solemne_2_dw/widgets/categories/card_categ_widget.dart';
 export 'package:solemne_2_dw/widgets/categories/detail_categ_widget.dart';
 export 'package:solemne_2_dw/widgets/categories/form_categ_widget.dart';
+export 'package:solemne_2_dw/widgets/categories/edit_create_categ_widget.dart';
 
 //PROVEEDORES
 export 'package:solemne_2_dw/widgets/suppliers/categ_expandible_widget.dart';

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:solemne_2_dw/ui/input_decorations.dart';
+import 'package:provider/provider.dart';
+import 'package:solemne_2_dw/providers/providers.dart';
 
 class FormCategWidget extends StatelessWidget {
   const FormCategWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final categForm = Provider.of<CategFormProvider>(context);
+    final category = categForm.category;
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
       child: Container(
@@ -13,11 +17,18 @@ class FormCategWidget extends StatelessWidget {
         width: double.infinity,
         decoration: _cardDecorations(),
         child: Form(
+          key: categForm.formkey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               TextFormField(
-                initialValue: 'Nombre de la Categoria',
+                initialValue: category.categorytName,
+                onChanged: (value) => category.categorytName = value,
+                validator: (value) {
+                  if (value == null || value.length < 1) {
+                    return 'El nombre es obligatorio';
+                  }
+                },
                 decoration: InputDecorations.authInputDecoration(
                   hinText: 'Categoria',
                   labelText: 'Nombre de la Categoria',
