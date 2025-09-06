@@ -1,37 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
+import 'package:solemne_2_dw/service/services.dart';
+import 'package:solemne_2_dw/screens/screens.dart';
+import 'package:provider/provider.dart';
 
 class ViewSuppliersScreen extends StatelessWidget {
   const ViewSuppliersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final suplliersService = Provider.of<suppliesrService>(context);
+    if (suplliersService.isLoading) return LoadingScreen();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarWidget(textTitle: 'PROVEEDORES'),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 30),
-            CategExpandibleWidget(
-              nameSuppliers: 'nameSuppliers',
-              rutSuppliers: 'rutSuppliers',
-              phoneSuppliers: 'phoneSuppliers',
-              emailSuppliers: 'emailSuppliers',
-            ),
-            CategExpandibleWidget(
-              nameSuppliers: 'nameSuppliers',
-              rutSuppliers: 'rutSuppliers',
-              phoneSuppliers: 'phoneSuppliers',
-              emailSuppliers: 'emailSuppliers',
-            ),
-            CategExpandibleWidget(
-              nameSuppliers: 'nameSuppliers',
-              rutSuppliers: 'rutSuppliers',
-              phoneSuppliers: 'phoneSuppliers',
-              emailSuppliers: 'emailSuppliers',
-            ),
-          ],
+      body: ListView.builder(
+        itemCount: suplliersService.supplier.length,
+        itemBuilder: (BuildContext context, index) => GestureDetector(
+          child: CategExpandibleWidget(
+            suppliers: suplliersService.supplier[index],
+          ),
         ),
       ),
 

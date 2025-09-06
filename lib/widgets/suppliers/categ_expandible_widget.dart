@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
+import 'package:solemne_2_dw/models/supplier.dart';
 
 class CategExpandibleWidget extends StatefulWidget {
-  final String nameSuppliers;
-  final String rutSuppliers;
-  final String phoneSuppliers;
-  final String emailSuppliers;
+  final Listado suppliers;
 
-  const CategExpandibleWidget({
-    super.key,
-    required this.nameSuppliers,
-    required this.rutSuppliers,
-    required this.phoneSuppliers,
-    required this.emailSuppliers,
-  });
+  const CategExpandibleWidget({super.key, required this.suppliers});
 
   @override
   State<CategExpandibleWidget> createState() => _CategExpandibleWidgetState();
@@ -48,7 +40,7 @@ class _CategExpandibleWidgetState extends State<CategExpandibleWidget> {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
-                        widget.nameSuppliers,
+                        widget.suppliers.providerEmail,
                         style: const TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
@@ -74,11 +66,7 @@ class _CategExpandibleWidgetState extends State<CategExpandibleWidget> {
                           horizontal: 0,
                           vertical: 0,
                         ),
-                        child: InfoSuppliersWidget(
-                          rutSuppliers: widget.rutSuppliers,
-                          phoneSuppliers: widget.phoneSuppliers,
-                          emailSuppliers: widget.emailSuppliers,
-                        ),
+                        child: InfoSuppliersWidget(suppliers: widget.suppliers),
                       ),
 
                       //BOTON EDITAR

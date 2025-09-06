@@ -43,7 +43,7 @@ class Listado {
     providerId: json["providerid"],
     providerName: json["provider_name"],
     providerLastName: json["provider_last_name"],
-    providerEmail: json["providerEmail"],
+    providerEmail: json["provider_mail"],
     providerState: json["provider_state"],
   );
 
@@ -51,7 +51,7 @@ class Listado {
     "providerid": providerId,
     "provider_name": providerName,
     "provider_last_name": providerLastName,
-    "providerEmail": providerEmail,
+    "provider_mail": providerEmail,
     "provider_state": providerState,
   };
 

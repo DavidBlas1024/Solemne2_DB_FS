@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:solemne_2_dw/models/supplier.dart';
 
 class InfoSuppliersWidget extends StatelessWidget {
-  final String rutSuppliers;
-  final String phoneSuppliers;
-  final String emailSuppliers;
+  final Listado suppliers;
 
-  const InfoSuppliersWidget({
-    super.key,
-
-    required this.rutSuppliers,
-    required this.phoneSuppliers,
-    required this.emailSuppliers,
-  });
+  const InfoSuppliersWidget({super.key, required this.suppliers});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +13,6 @@ class InfoSuppliersWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         width: double.infinity,
-        decoration: _cardDecorations(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,7 +21,7 @@ class InfoSuppliersWidget extends StatelessWidget {
               width: double.infinity,
               decoration: _cardDecorations(),
               child: Text(
-                rutSuppliers,
+                suppliers.providerName,
                 style: const TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -43,7 +35,7 @@ class InfoSuppliersWidget extends StatelessWidget {
               width: double.infinity,
               decoration: _cardDecorations(),
               child: Text(
-                phoneSuppliers,
+                suppliers.providerLastName,
                 style: const TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -51,20 +43,7 @@ class InfoSuppliersWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 6),
-            Container(
-              padding: const EdgeInsets.only(bottom: 4, top: 19),
-              width: double.infinity,
-              decoration: _cardDecorations(),
-              child: Text(
-                emailSuppliers,
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -78,7 +57,7 @@ class InfoSuppliersWidget extends StatelessWidget {
       bottomRight: Radius.circular(5),
     ),
     boxShadow: const [
-      BoxShadow(color: Color.fromARGB(255, 1, 2, 34), offset: Offset(0, 5)),
+      BoxShadow(color: Color.fromARGB(255, 4, 9, 151), offset: Offset(0, 5)),
     ],
   );
 }
