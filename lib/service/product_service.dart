@@ -59,6 +59,7 @@ class ProductService extends ChangeNotifier {
       (element) => element.productId == product.productId,
     );
     products[index] = product;
+    loadProducts();
     return '';
   }
 
@@ -77,6 +78,7 @@ class ProductService extends ChangeNotifier {
     print(decodeResp);
     //agregar producto
     this.products.add(product);
+    loadProducts();
 
     return '';
   }
@@ -95,7 +97,7 @@ class ProductService extends ChangeNotifier {
     final decodeResp = response.body;
     this.products.clear();
     loadProducts();
-    Navigator.of(contex).pushNamed('list_product');
+    Navigator.of(contex).pushNamed('view_products');
     return '';
   }
 }
