@@ -25,14 +25,14 @@ class Listado {
     required this.providerId,
     required this.providerName,
     required this.providerLastName,
-    required this.providerEmail,
+    required this.providerMail,
     required this.providerState,
   });
 
   int providerId;
   String providerName;
   String providerLastName;
-  String providerEmail;
+  String providerMail;
   String providerState;
 
   factory Listado.fromJson(String str) => Listado.fromMap(json.decode(str));
@@ -43,7 +43,7 @@ class Listado {
     providerId: json["providerid"],
     providerName: json["provider_name"],
     providerLastName: json["provider_last_name"],
-    providerEmail: json["provider_mail"],
+    providerMail: json["provider_mail"],
     providerState: json["provider_state"],
   );
 
@@ -51,7 +51,7 @@ class Listado {
     "providerid": providerId,
     "provider_name": providerName,
     "provider_last_name": providerLastName,
-    "provider_mail": providerEmail,
+    "provider_mail": providerMail,
     "provider_state": providerState,
   };
 
@@ -59,7 +59,7 @@ class Listado {
     providerId: providerId,
     providerName: providerName,
     providerLastName: providerLastName,
-    providerEmail: providerEmail,
+    providerMail: providerMail,
     providerState: providerState,
   );
 }

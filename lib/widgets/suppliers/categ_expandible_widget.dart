@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
 import 'package:solemne_2_dw/models/supplier.dart';
+import 'package:provider/provider.dart';
+import 'package:solemne_2_dw/service/services.dart';
 
 class CategExpandibleWidget extends StatefulWidget {
   final Listado suppliers;
@@ -40,7 +42,7 @@ class _CategExpandibleWidgetState extends State<CategExpandibleWidget> {
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
-                        widget.suppliers.providerEmail,
+                        widget.suppliers.providerMail,
                         style: const TextStyle(
                           fontSize: 23,
                           fontWeight: FontWeight.bold,
@@ -97,7 +99,15 @@ class _CategExpandibleWidgetState extends State<CategExpandibleWidget> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+
                           onPressed: () {
+                            final suppliersService =
+                                Provider.of<SuppliersService>(
+                                  context,
+                                  listen: false,
+                                );
+                            suppliersService.selectsupplier = widget.suppliers
+                                .copy(); //
                             Navigator.pushNamed(context, 'edit_suppliers');
                           },
                         ),

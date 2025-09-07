@@ -29,9 +29,9 @@ class ViewSuppliersScreen extends StatelessWidget {
         onPressed: () {
           suplliersService.selectsupplier = Listado(
             providerId: 0,
+            providerMail: '',
             providerName: '',
             providerLastName: '',
-            providerEmail: '',
             providerState: '',
           );
           Navigator.pushNamed(context, 'create_suppliers');

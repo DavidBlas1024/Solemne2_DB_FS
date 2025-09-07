@@ -37,20 +37,22 @@ class EditCreateSuppWidget extends StatelessWidget {
               backgroundColor: Colors.red,
               child: const Icon(Icons.delete_forever),
               onPressed: () async {
-                if (!supplierForm.isValidForm()) return;
                 await suppliersService.deleteSupplier(
                   supplierForm.supplier,
                   context,
                 );
+                print('boton presionado');
                 Navigator.pop(context);
               },
+
+              //Guardar
             ),
           SizedBox(width: 20),
           FloatingActionButton(
             child: Icon(Icons.save),
             onPressed: () async {
               print('🟢 Botón presionado');
-              if (!supplierForm.isValidForm()) return;
+
               await suppliersService.editOrCreateSupplier(
                 supplierForm.supplier,
               );

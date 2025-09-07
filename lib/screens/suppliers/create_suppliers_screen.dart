@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:solemne_2_dw/widgets/suppliers/edit_create_supp_widget.dart';
 import 'package:solemne_2_dw/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:solemne_2_dw/providers/providers.dart';

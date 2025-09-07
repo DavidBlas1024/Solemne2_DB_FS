@@ -30,6 +30,7 @@ class SuppliersService extends ChangeNotifier {
   }
 
   Future editOrCreateSupplier(Listado supplier) async {
+    print('🛠️ editOrCreateSupplier llamado con ID: ${supplier.providerId}');
     isEditCreate = true;
     notifyListeners();
     if (supplier.providerId == 0) {
@@ -44,15 +45,25 @@ class SuppliersService extends ChangeNotifier {
   Future<String> updateSupplier(Listado suppliers) async {
     final url = Uri.http(_baseUrl, 'ejemplos/provider_edit_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+
+    final bodyJson = jsonEncode({
+      'provider_id': suppliers.providerId,
+      'provider_name': suppliers.providerName,
+      'provider_last_name': suppliers.providerLastName,
+      'provider_mail': suppliers.providerMail,
+      'provider_state': suppliers.providerState,
+    });
+
     final response = await http.post(
       url,
-      body: suppliers.toJson(),
+      body: bodyJson,
       headers: {
         'Authorization': basicAuth,
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-    //Actulizar Listado
+
+    //Actualizar listado
     final index = supplier.indexWhere(
       (element) => element.providerId == suppliers.providerId,
     );
@@ -64,30 +75,41 @@ class SuppliersService extends ChangeNotifier {
   Future createSupplier(Listado suppliers) async {
     final url = Uri.http(_baseUrl, 'ejemplos/provider_add_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+
+    final bodyJson = jsonEncode({
+      'provider_name': suppliers.providerName,
+      'provider_last_name': suppliers.providerLastName,
+      'provider_mail': suppliers.providerMail,
+      'provider_state': suppliers.providerState,
+    });
+
     final response = await http.post(
       url,
-      body: suppliers.toJson(),
+      body: bodyJson,
       headers: {
         'Authorization': basicAuth,
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
 
-    //agregar producto
-    this.supplier.add(suppliers);
+    //AGREGAR PROVEEDORES
+
+    supplier.add(suppliers);
     loadsupplier();
 
     return '';
   }
 
   Future deleteSupplier(Listado suppliers, BuildContext contex) async {
+    print('🗑️ Eliminando proveedor: ${suppliers.toJson()}');
     final url = Uri.http(_baseUrl, 'ejemplos/provider_del_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
+    final bodyJson = jsonEncode({'provider_id': suppliers.providerId});
     final response = await http.post(
       url,
-      body: suppliers.toJson(),
+      body: bodyJson,
       headers: {
-        'authorization': basicAuth,
+        'Authorization': basicAuth,
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );

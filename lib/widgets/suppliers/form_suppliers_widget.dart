@@ -15,8 +15,8 @@ class FormSuppliersWidget extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
-            initialValue: supplier.providerEmail,
-            onChanged: (value) => supplier.providerEmail = value,
+            initialValue: supplier.providerMail,
+            onChanged: (value) => supplier.providerMail = value,
             validator: (value) {
               if (value == null || value.length < 1) {
                 return 'El correo es obligatorio';
