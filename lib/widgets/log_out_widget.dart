@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:solemne_2_dw/providers/providers.dart';
 
 class LogOutWidget extends StatelessWidget {
   const LogOutWidget({super.key});
@@ -23,7 +25,16 @@ class LogOutWidget extends StatelessWidget {
                 iconSize: 46,
                 tooltip: 'Cerrar sesión',
                 onPressed: () {
-                  Navigator.pop(context);
+                  final loginForm = Provider.of<LoginFormProvider>(
+                    context,
+                    listen: false,
+                  );
+                  loginForm.clear();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    'login',
+                    (Route<dynamic> route) => false,
+                  );
                 },
               ),
             ),

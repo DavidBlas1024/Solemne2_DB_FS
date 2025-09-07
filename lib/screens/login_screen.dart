@@ -14,6 +14,7 @@ class LoginScreen extends StatelessWidget {
           path: 'register',
           textButton: 'Acceder',
           pathButton: 'home',
+          loginRegister: 1,
         ),
       ),
     );

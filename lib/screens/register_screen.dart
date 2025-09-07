@@ -13,7 +13,8 @@ class RegisterScreen extends StatelessWidget {
           textFinalButton: '¿Tienes cuenta?, accede aqui',
           path: 'login',
           textButton: 'Registrar',
-          pathButton: 'error', //falta consumir el servicio
+          pathButton: 'login',
+          loginRegister: 2,
         ),
       ),
     );

@@ -102,7 +102,6 @@ class SuppliersService extends ChangeNotifier {
   }
 
   Future deleteSupplier(Listado suppliers, BuildContext contex) async {
-    print('🗑️ Eliminando proveedor: ${suppliers.toJson()}');
     final url = Uri.http(_baseUrl, 'ejemplos/provider_del_rest/');
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$_user:$_pass'));
     final bodyJson = jsonEncode({'provider_id': suppliers.providerId});

@@ -3,6 +3,7 @@ import 'package:solemne_2_dw/widgets/widgets.dart';
 import 'package:solemne_2_dw/models/supplier.dart';
 import 'package:provider/provider.dart';
 import 'package:solemne_2_dw/service/services.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class CategExpandibleWidget extends StatefulWidget {
   final Listado suppliers;
@@ -39,16 +40,16 @@ class _CategExpandibleWidgetState extends State<CategExpandibleWidget> {
                 children: [
                   //texto
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Text(
-                        widget.suppliers.providerMail,
-                        style: const TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                    child: AutoSizeText(
+                      widget.suppliers.providerMail,
+                      style: const TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
+                      maxLines:
+                          1, // ajusta la fuente para que quepa en una línea
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

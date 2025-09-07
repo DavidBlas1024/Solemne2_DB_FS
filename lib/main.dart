@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solemne_2_dw/providers/login_form_provider.dart';
 import 'package:solemne_2_dw/routes/app_routes.dart';
 import 'package:solemne_2_dw/themes/my_theme.dart';
 import 'package:solemne_2_dw/service/services.dart';
@@ -18,6 +21,8 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ProductService()),
         ChangeNotifierProvider(create: (_) => CategService()),
         ChangeNotifierProvider(create: (_) => SuppliersService()),
+        ChangeNotifierProvider(create: (_) => AuthService()),
+        ChangeNotifierProvider(create: (_) => LoginFormProvider()),
       ],
       child: const MainApp(),
     );

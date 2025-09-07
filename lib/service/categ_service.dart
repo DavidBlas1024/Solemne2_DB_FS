@@ -75,7 +75,7 @@ class CategService extends ChangeNotifier {
       },
     );
 
-    //agregar producto
+    //agregar categoria
     this.category.add(categ);
     loadCategory();
 
