@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, unnecessary_this, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -30,7 +32,6 @@ class SuppliersService extends ChangeNotifier {
   }
 
   Future editOrCreateSupplier(Listado supplier) async {
-    print('🛠️ editOrCreateSupplier llamado con ID: ${supplier.providerId}');
     isEditCreate = true;
     notifyListeners();
     if (supplier.providerId == 0) {
